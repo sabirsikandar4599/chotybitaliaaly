@@ -6,18 +6,7 @@ const path    = require('path');
 
 const app = express();
 
-// ── CORS — portfolio domain allow karo ──────────────────────────────
-app.use(cors({
-  origin: [
-    'https://chotybitaliaaly.onrender.com',   // aapki portfolio site
-    'https://msproductionhouse-production.up.railway.app', // railway khud
-    'http://localhost:3000',                   // local development
-    'http://127.0.0.1:5500',                  // VS Code Live Server
-  ],
-  methods: ['GET', 'POST', 'OPTIONS'],
-  allowedHeaders: ['Content-Type']
-}));
-
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname));
@@ -29,8 +18,9 @@ app.get('/', (req, res) => {
 app.post('/api/contact', (req, res) => {
   const { name, email, subject, message } = req.body;
 
-  if (!name || !email || !message)
+  if (!name || !email || !message) {
     return res.status(400).json({ ok: false, error: 'Name, email and message required' });
+  }
 
   const payload = JSON.stringify({
     sender:      { name: 'MS Production House', email: process.env.FROM_EMAIL },
@@ -45,12 +35,14 @@ app.post('/api/contact', (req, res) => {
         <p><strong>Name:</strong> ${name}</p>
         <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
         <p><strong>Subject:</strong> ${subject || '—'}</p>
-        <p><strong>Message:</strong><br>${String(message).replace(/\n/g,'<br>')}</p>
+        <p><strong>Message:</strong><br>${String(message).replace(/\n/g, '<br>')}</p>
       </div>`
   });
 
   const options = {
-    method: 'POST', hostname: 'api.brevo.com', path: '/v3/smtp/email',
+    method:   'POST',
+    hostname: 'api.brevo.com',
+    path:     '/v3/smtp/email',
     headers: {
       'api-key':        process.env.BREVO_API_KEY,
       'Content-Type':   'application/json',
@@ -64,7 +56,7 @@ app.post('/api/contact', (req, res) => {
     apiRes.on('data', chunk => body += chunk);
     apiRes.on('end', () => {
       if (apiRes.statusCode >= 200 && apiRes.statusCode < 300) {
-        console.log('Email sent:', name);
+        console.log('Email sent successfully from:', name);
         res.json({ ok: true, message: 'Email sent successfully' });
       } else {
         console.error('Brevo error:', apiRes.statusCode, body);
@@ -73,8 +65,15 @@ app.post('/api/contact', (req, res) => {
     });
   });
 
-  apiReq.on('error', e => res.status(500).json({ ok: false, error: e.message }));
-  apiReq.setTimeout(20000, () => apiReq.destroy(new Error('Timeout')));
+  apiReq.on('error', (err) => {
+    console.error('Request error:', err.message);
+    res.status(500).json({ ok: false, error: 'Network error' });
+  });
+
+  apiReq.setTimeout(20000, () => {
+    apiReq.destroy(new Error('Request timeout'));
+  });
+
   apiReq.write(payload);
   apiReq.end();
 });
