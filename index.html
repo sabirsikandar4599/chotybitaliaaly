@@ -493,7 +493,7 @@ footer.wide{margin-left:var(--sb)}
 
 /* ══ TESTIMONIALS ══ */
 #testimonials{background:rgba(8,12,24,.55)}
-.test-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:15px}
+.test-grid{display:grid;grid-template-columns:1fr;gap:15px;max-width:720px}
 .test-card{background:var(--card);border:1px solid var(--bdr);border-radius:15px;padding:24px;
   position:relative;transition:.25s}
 .test-card:hover{border-color:rgba(249,115,22,.22);transform:translateY(-3px)}
@@ -2836,14 +2836,16 @@ window.addEventListener("scroll",function(){
   if(stb)stb.classList.toggle("show",window.scrollY>400);
   var cur="";
   var vh=window.innerHeight;
-  var threshold=vh*0.45; // 45% from top of viewport = activation point
-  ["about","services","partners","skills","projects","testimonials","students","timeline","contact"].forEach(function(id){
+  var line=vh*0.35; // activation line (35% from top of viewport)
+  var ids=["about","services","partners","skills","projects","testimonials","students","timeline","contact"];
+  for(var i=0;i<ids.length;i++){
+    var id=ids[i];
     var el=document.getElementById(id);
-    if(!el)return;
+    if(!el)continue;
     var rect=el.getBoundingClientRect();
-    // Section is active if its top is above threshold AND its bottom is still below 0
-    if(rect.top<=threshold && rect.bottom>60){cur=id;}
-  });
+    // Section is active if the activation line falls inside it
+    if(rect.top<=line && rect.bottom>line){cur=id;break;}
+  }
   document.querySelectorAll(".sb-link[data-s]").forEach(function(a){
     a.classList.toggle("active",a.dataset.s===cur);
   });
