@@ -48,7 +48,7 @@ app.post('/api/contact', (req, res) => {
   };
 
   const payload = JSON.stringify({
-    sender:      { name: 'MS Production House', email: process.env.FROM_EMAIL },
+    sender:      { name: 'Bitali Aaly', email: process.env.FROM_EMAIL },
     to:          [{ email: process.env.TO_EMAIL, name: 'Sabir Ali' }],
     replyTo:     { email: email, name: name },
     subject:     subject ? `Portfolio: ${subject}` : `Portfolio Message from ${name}`,
