@@ -63,6 +63,34 @@
       "founder": {"@id": "https://chotybitaliaaly.onrender.com/#person"}
     },
     {
+      "@type": "SoftwareApplication",
+      "name": "BitaliAaly Result & Timetable",
+      "url": "https://bitaliaaly-results.bitaliaaly.workers.dev/",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Web, Android, Windows",
+      "description": "Professional result cards, school timetables and exam date sheets — on your phone and computer.",
+      "publisher": {"@id": "https://chotybitaliaaly.onrender.com/#business"}
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "BitaliAaly Progress Tracker",
+      "url": "https://bitaliaaly-progress.bitaliaaly.workers.dev/",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Web, Android, Windows",
+      "description": "Every test of every student — progress, graphs and reports for parents. On your phone and computer.",
+      "publisher": {"@id": "https://chotybitaliaaly.onrender.com/#business"}
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "BitaliAaly Data Entry Solution",
+      "url": "https://license-server.bitaliaaly.workers.dev/download",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Windows 10, Windows 11",
+      "softwareVersion": "1.3.50",
+      "description": "Desktop software that learns any offline program from one manual entry, then enters the whole sheet line by line.",
+      "publisher": {"@id": "https://chotybitaliaaly.onrender.com/#business"}
+    },
+    {
       "@type": "WebSite",
       "@id": "https://chotybitaliaaly.onrender.com/#website",
       "name": "Sabir Ali — Bitali Aaly",
@@ -355,6 +383,26 @@ html:not(.js) .bar-fill,.skill.in .bar-fill{width:var(--w)}
 .p-body .chips{margin-top:22px}
 .p-body .btn{margin-top:28px;align-self:flex-start;height:44px;font-size:14.5px}
 
+/* ───────────────────────── Software ───────────────────────── */
+.sw-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.sw{display:flex;flex-direction:column;overflow:hidden}
+.sw-shot{position:relative;padding:22px 22px 0;background:radial-gradient(120% 90% at 0% 0%,var(--accent-soft),transparent 60%),var(--bg-2);
+  border-bottom:1px solid var(--border);overflow:hidden;height:250px}
+.sw-shot .browser{border-bottom-left-radius:0;border-bottom-right-radius:0;border-bottom:0}
+.sw-shot img{width:100%;height:auto;display:block}
+.sw:hover .browser{transform:translateY(-6px)}
+.sw-body{padding:26px;display:flex;flex-direction:column;flex:1}
+.sw-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.sw-tags .chip{height:26px;font-size:12px;padding:0 10px}
+.sw h3{font-size:21px;font-weight:600;letter-spacing:-.02em;line-height:1.25}
+.sw-body > p{color:var(--muted);font-size:15px;line-height:1.65;margin-top:10px}
+.sw ul{list-style:none;display:grid;gap:9px;margin:18px 0 22px}
+.sw li{display:grid;grid-template-columns:18px minmax(0,1fr);gap:10px;font-size:14px;color:var(--muted);line-height:1.5}
+.sw li .ico{font-size:16px;color:var(--accent);stroke-width:2.4;margin-top:2px}
+.sw-foot{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-top:18px;border-top:1px solid var(--border)}
+.sw-foot small{font-size:13px;color:var(--dim)}
+.sw-foot .btn{height:42px;font-size:14px;padding:0 18px}
+
 /* ───────────────────────── Testimonials ───────────────────────── */
 .quotes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
 .quote{padding:30px;display:flex;flex-direction:column}
@@ -516,6 +564,8 @@ textarea.input{height:auto;min-height:140px;padding:14px 16px;resize:vertical;li
   .portrait{margin:8px auto 0;max-width:420px}
   .b-intro,.b-metrics,.b-now,.b-tool{grid-column:span 12}
   .svc-grid,.skill-grid,.quotes,.students{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .sw-grid{grid-template-columns:minmax(0,1fr);max-width:620px}
+  .sw-shot{height:300px}
   .project,.contact{grid-template-columns:minmax(0,1fr)}
   .project .p-media,.project:nth-child(even) .p-media{order:0;border:0;border-bottom:1px solid var(--border)}
   .c-info{border-right:0;border-bottom:1px solid var(--border)}
@@ -529,6 +579,7 @@ textarea.input{height:auto;min-height:140px;padding:14px 16px;resize:vertical;li
 }
 @media(max-width:640px){
   .svc-grid,.skill-grid,.quotes,.students,.topics{grid-template-columns:minmax(0,1fr)}
+  .sw-shot{height:220px;padding:16px 16px 0}
   .st-stats{grid-template-columns:repeat(2,minmax(0,1fr))}
   .st-stats div:nth-child(2){border-right:0}
   .st-stats div:nth-child(-n+2){border-bottom:1px solid var(--border)}
@@ -579,6 +630,7 @@ textarea.input{height:auto;min-height:140px;padding:14px 16px;resize:vertical;li
   <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
   <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3v4M12 17v4M3 12h4M17 12h4M6 6l2.5 2.5M15.5 15.5 18 18M6 18l2.5-2.5M15.5 8.5 18 6"/></symbol>
   <symbol id="i-users" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></symbol>
   <symbol id="i-code" viewBox="0 0 24 24"><path d="m16 18 6-6-6-6M8 6l-6 6 6 6"/></symbol>
   <symbol id="i-send" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4 20-7z"/><path d="M22 2 11 13"/></symbol>
 </svg>
@@ -596,6 +648,7 @@ textarea.input{height:auto;min-height:140px;padding:14px 16px;resize:vertical;li
       <a href="#about">About</a>
       <a href="#services">Services</a>
       <a href="#projects">Work</a>
+      <a href="#software">Software</a>
       <a href="#partners">Course</a>
       <a href="#students">Students</a>
       <a href="#timeline">Journey</a>
@@ -616,6 +669,7 @@ textarea.input{height:auto;min-height:140px;padding:14px 16px;resize:vertical;li
     <a href="#about">About <svg class="ico"><use href="#i-arrow"/></svg></a>
     <a href="#services">Services <svg class="ico"><use href="#i-arrow"/></svg></a>
     <a href="#projects">Work <svg class="ico"><use href="#i-arrow"/></svg></a>
+    <a href="#software">Software <svg class="ico"><use href="#i-arrow"/></svg></a>
     <a href="#partners">Course <svg class="ico"><use href="#i-arrow"/></svg></a>
     <a href="#students">Students <svg class="ico"><use href="#i-arrow"/></svg></a>
     <a href="#timeline">Journey <svg class="ico"><use href="#i-arrow"/></svg></a>
@@ -820,6 +874,64 @@ textarea.input{height:auto;min-height:140px;padding:14px 16px;resize:vertical;li
           <h3>The Westbridge Schools</h3>
           <p>School website + animated educational videos. Custom Python+ffmpeg pipeline for zoom effects, typewriter captions, and physics explainer animations.</p>
           <div class="chips"><span class="chip">HTML/CSS/JS</span><span class="chip">Python</span><span class="chip">ffmpeg</span><span class="chip">PIL</span></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ───────── Software ───────── -->
+<section class="section" id="software">
+  <div class="wrap">
+    <div class="sh rv">
+      <p class="label">Software</p>
+      <h2 class="h2">Products for <span class="grad">schools</span></h2>
+      <p class="lead">My own software under the Bitali Aaly brand — built for school offices, teachers and academies. Works on phone and computer, online and offline.</p>
+    </div>
+    <div class="sw-grid">
+      <article class="card spot sw rv">
+        <div class="sw-shot"><div class="browser"><div class="browser-bar"><i></i><i></i><i></i><span>bitaliaaly-results.bitaliaaly.workers.dev</span></div><img src="/images/software-results.webp" width="670" height="640" alt="BitaliAaly Result &amp; Timetable app" loading="lazy"/></div></div>
+        <div class="sw-body">
+          <div class="sw-tags"><span class="chip chip-accent">Web</span><span class="chip">Android</span><span class="chip">Windows</span></div>
+          <h3>BitaliAaly Result &amp; Timetable</h3>
+          <p>Result cards, timetables and exam date sheets — ready in minutes, with the school's own logo.</p>
+          <ul>
+            <li><svg class="ico"><use href="#i-check"/></svg><span>Result cards from a photo, Excel or typed marks — 3 ready designs or your own</span></li>
+            <li><svg class="ico"><use href="#i-check"/></svg><span>Clash-free timetable, rearranged with one tap</span></li>
+            <li><svg class="ico"><use href="#i-check"/></svg><span>Exam date sheets and test series with syllabus</span></li>
+            <li><svg class="ico"><use href="#i-check"/></svg><span>PDF, pictures, ZIP and Excel — one student or the whole class</span></li>
+          </ul>
+          <div class="sw-foot"><small>Free 7-day trial</small><a class="btn btn-primary" href="https://bitaliaaly-results.bitaliaaly.workers.dev/#/school" target="_blank" rel="noopener">Open app <svg class="ico"><use href="#i-up-right"/></svg></a></div>
+        </div>
+      </article>
+      <article class="card spot sw rv" style="--d:.08s">
+        <div class="sw-shot"><div class="browser"><div class="browser-bar"><i></i><i></i><i></i><span>bitaliaaly-progress.bitaliaaly.workers.dev</span></div><img src="/images/software-progress.webp" width="670" height="640" alt="BitaliAaly Progress Tracker app" loading="lazy"/></div></div>
+        <div class="sw-body">
+          <div class="sw-tags"><span class="chip chip-accent">Web</span><span class="chip">Android</span><span class="chip">Windows</span></div>
+          <h3>BitaliAaly Progress Tracker</h3>
+          <p>Every test of every student in one place — see who is improving, who is slipping, and send parents a clear report.</p>
+          <ul>
+            <li><svg class="ico"><use href="#i-check"/></svg><span>Marks typed, from Excel, or from a photo of the handwritten page</span></li>
+            <li><svg class="ico"><use href="#i-check"/></svg><span>Graphs: progress line, subject bars and class ranking</span></li>
+            <li><svg class="ico"><use href="#i-check"/></svg><span>Reports with your logo, sent to parents on WhatsApp</span></li>
+            <li><svg class="ico"><use href="#i-check"/></svg><span>Admin and teacher logins, offline use and cloud backup</span></li>
+          </ul>
+          <div class="sw-foot"><small>Free 7-day trial</small><a class="btn btn-primary" href="https://bitaliaaly-progress.bitaliaaly.workers.dev/" target="_blank" rel="noopener">Open app <svg class="ico"><use href="#i-up-right"/></svg></a></div>
+        </div>
+      </article>
+      <article class="card spot sw rv" style="--d:.16s">
+        <div class="sw-shot"><div class="browser"><div class="browser-bar"><i></i><i></i><i></i><span>license-server.bitaliaaly.workers.dev/download</span></div><img src="/images/software-data-entry.webp" width="728" height="634" alt="BitaliAaly Data Entry Solution download page" loading="lazy"/></div></div>
+        <div class="sw-body">
+          <div class="sw-tags"><span class="chip chip-accent">Windows 10 / 11</span><span class="chip">Desktop</span><span class="chip">v1.3.50</span></div>
+          <h3>BitaliAaly Data Entry Solution</h3>
+          <p>Desktop software that learns any offline program from one entry done by hand, then fills the whole sheet for you.</p>
+          <ul>
+            <li><svg class="ico"><use href="#i-check"/></svg><span>Learns dropdowns, boxes, dates, ticks, menus and student grids</span></li>
+            <li><svg class="ico"><use href="#i-check"/></svg><span>“Check first” fills and reads back without saving</span></li>
+            <li><svg class="ico"><use href="#i-check"/></svg><span>Saves the whole sheet line by line, matching each student by roll number or name</span></li>
+            <li><svg class="ico"><use href="#i-check"/></svg><span>Updates itself — your data is never deleted</span></li>
+          </ul>
+          <div class="sw-foot"><small>115 MB · 64-bit</small><a class="btn btn-accent" href="https://license-server.bitaliaaly.workers.dev/download" target="_blank" rel="noopener"><svg class="ico"><use href="#i-download"/></svg> Download</a></div>
         </div>
       </article>
     </div>
@@ -1068,7 +1180,7 @@ textarea.input{height:auto;min-height:140px;padding:14px 16px;resize:vertical;li
       </div>
       <nav class="f-col" aria-label="Footer">
         <h4>Navigate</h4>
-        <a href="#about">About</a><a href="#services">Services</a><a href="#skills">Tech stack</a><a href="#projects">Work</a><a href="#timeline">Journey</a><a href="#contact">Contact</a>
+        <a href="#about">About</a><a href="#services">Services</a><a href="#skills">Tech stack</a><a href="#projects">Work</a><a href="#software">Software</a><a href="#timeline">Journey</a><a href="#contact">Contact</a>
       </nav>
       <div class="f-col">
         <h4>Services</h4>
@@ -1128,7 +1240,7 @@ textarea.input{height:auto;min-height:140px;padding:14px 16px;resize:vertical;li
 
   /* Active section in nav */
   var links = document.querySelectorAll('.nav-links a, #sheet a[href^="#"]');
-  var sections = ['about', 'services', 'projects', 'partners', 'students', 'timeline']
+  var sections = ['about', 'services', 'projects', 'software', 'partners', 'students', 'timeline']
     .map(function (id) { return document.getElementById(id); });
   if ('IntersectionObserver' in window) {
     var spy = new IntersectionObserver(function (entries) {
