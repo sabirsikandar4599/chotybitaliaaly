@@ -497,6 +497,141 @@ textarea.input{height:auto;min-height:140px;padding:12px 14px;resize:vertical;li
   .badge .bi{width:32px;height:32px}
   .kpis{gap:20px}
 }
+
+/* ── Signature features ─────────────────────────── */
+.progress{position:fixed;left:0;top:0;height:3px;width:100%;z-index:60;transform-origin:0 50%;transform:scaleX(0);
+  background:linear-gradient(90deg,var(--accent),#ffb347);pointer-events:none}
+.hero{isolation:isolate}
+#net{position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none}
+.type{color:var(--accent);white-space:nowrap}
+.caret{display:inline-block;width:.07em;height:.82em;margin-left:.06em;background:var(--accent);vertical-align:-.06em;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.stage{perspective:1400px}
+.tilt{position:absolute;inset:0;transform-style:preserve-3d;transition:transform .35s var(--ease)}
+.tilt .f-a{transform:translateZ(10px)}
+.tilt .f-b{transform:translateZ(60px)}
+.tilt .badge{transform:translateZ(100px)}
+.kbtn{display:inline-flex;align-items:center;gap:10px;height:40px;padding:0 10px 0 12px;border-radius:9px;border:1px solid var(--line);color:var(--muted);font-size:14px;
+  transition:border-color .2s,color .2s}
+.kbtn:hover{border-color:var(--line-2);color:var(--ink)}
+.kbtn .ico{font-size:16px}
+kbd{font-family:var(--font);font-size:11.5px;font-weight:600;padding:2px 6px;border-radius:5px;border:1px solid var(--line-2);background:var(--bg-soft);color:var(--muted)}
+@media(max-width:1180px){.kbtn span,.kbtn kbd{display:none}.kbtn{padding:0;width:40px;justify-content:center}}
+@media(max-width:1020px){.kbtn{display:none}}
+
+/* Command palette */
+.cmdk{position:fixed;inset:0;z-index:90;display:none;align-items:flex-start;justify-content:center;padding:12vh 16px 16px;background:rgba(8,12,20,.45);
+  -webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+.cmdk.open{display:flex;animation:fade .15s ease}
+@keyframes fade{from{opacity:0}}
+.cmdk-box{width:100%;max-width:600px;background:var(--bg);border:1px solid var(--line-2);border-radius:16px;box-shadow:0 40px 80px -20px rgba(0,0,0,.5);overflow:hidden;animation:pop .2s var(--ease)}
+@keyframes pop{from{transform:translateY(-8px) scale(.98);opacity:0}}
+.cmdk-in{display:flex;align-items:center;gap:12px;padding:0 18px;border-bottom:1px solid var(--line)}
+.cmdk-in .ico{font-size:20px;color:var(--faint)}
+.cmdk-in input{flex:1;height:58px;border:0;background:transparent;font-size:16.5px;outline:none}
+.cmdk-list{list-style:none;max-height:min(60vh,420px);overflow:auto;padding:8px}
+.cmdk-g{padding:10px 12px 6px;font-size:12px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--faint)}
+.cmdk-item{display:flex;align-items:center;gap:12px;padding:11px 12px;border-radius:10px;cursor:pointer;font-size:15px;color:var(--ink-2)}
+.cmdk-item .ico{font-size:18px;color:var(--muted)}
+.cmdk-item small{margin-left:auto;font-size:12.5px;color:var(--faint)}
+.cmdk-item[aria-selected="true"]{background:var(--bg-soft);color:var(--ink)}
+.cmdk-item[aria-selected="true"] .ico{color:var(--accent)}
+.cmdk-empty{padding:28px;text-align:center;color:var(--muted);font-size:15px}
+.cmdk-foot{display:flex;gap:16px;padding:10px 16px;border-top:1px solid var(--line);font-size:12.5px;color:var(--faint);background:var(--bg-soft)}
+
+/* Toast */
+.toast{position:fixed;left:50%;bottom:24px;z-index:95;transform:translate(-50%,20px);opacity:0;pointer-events:none;display:flex;align-items:center;gap:10px;
+  padding:12px 18px;border-radius:12px;background:var(--ink);color:var(--bg);font-size:14.5px;font-weight:500;box-shadow:var(--shadow-lg);transition:opacity .25s,transform .25s var(--ease)}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.toast .ico{color:#4ade80;font-size:18px}
+
+/* Live demo */
+.demo{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:20px;align-items:start}
+.demo-form{padding:clamp(22px,3vw,32px)}
+.demo-form h3{font-family:var(--display);font-size:18px;font-weight:600;letter-spacing:-.01em;margin-bottom:18px}
+.demo-form .field{margin-bottom:14px}
+.marks{display:grid;gap:10px}
+.mark{display:grid;grid-template-columns:minmax(0,1fr) 120px 52px;gap:12px;align-items:center;font-size:14.5px}
+.mark input[type=range]{width:100%;accent-color:var(--accent)}
+.mark output{font-variant-numeric:tabular-nums;font-weight:600;text-align:right}
+.demo-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.rc{position:relative;padding:clamp(22px,3vw,34px);background:#fff;color:#0b1220;border:1px solid var(--line);border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);overflow:hidden}
+.rc::before{content:'';position:absolute;left:0;right:0;top:0;height:6px;background:linear-gradient(90deg,#0f2747 60%,#ea5b0c)}
+.rc-head{display:flex;align-items:center;gap:14px;padding-bottom:16px;border-bottom:1px dashed #d6dae2}
+.rc-logo{width:48px;height:48px;border-radius:12px;display:grid;place-items:center;background:#0f2747;color:#fff;font-family:var(--display);font-weight:700;font-size:18px;flex-shrink:0}
+.rc-head b{display:block;font-family:var(--display);font-size:19px;font-weight:700;letter-spacing:-.01em;line-height:1.2}
+.rc-head span{font-size:12.5px;color:#5b6475}
+.rc-tag{margin-left:auto;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#ea5b0c;background:#fff1e8;padding:6px 10px;border-radius:7px;white-space:nowrap}
+.rc-info{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:16px 0}
+.rc-info div{font-size:12px;color:#5b6475}
+.rc-info b{display:block;font-size:14.5px;color:#0b1220;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.rc table{width:100%;border-collapse:collapse;font-size:14px}
+.rc th{text-align:left;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:#8a93a3;font-weight:600;padding:8px 0;border-bottom:1px solid #e6e8ee}
+.rc td{padding:9px 0;border-bottom:1px solid #eef0f4;font-variant-numeric:tabular-nums}
+.rc td:nth-child(2),.rc td:nth-child(3),.rc th:nth-child(2),.rc th:nth-child(3){text-align:right;width:80px}
+.rc .bar{height:5px;border-radius:9px;background:#eef0f4;overflow:hidden;margin-top:6px}
+.rc .bar i{display:block;height:100%;border-radius:9px;background:linear-gradient(90deg,#0f2747,#2f5ea8);transition:width .5s var(--ease)}
+.rc .bar i.low{background:#dc2626}
+.rc-sum{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:18px}
+.rc-sum div{padding:12px;border-radius:12px;background:#f6f7f9;border:1px solid #e6e8ee}
+.rc-sum small{display:block;font-size:11.5px;color:#5b6475}
+.rc-sum b{font-family:var(--display);font-size:22px;font-weight:700;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.rc-sum .grade{background:#0f2747;border-color:#0f2747;color:#fff}
+.rc-sum .grade small{color:#a9b6c9}
+.rc-foot{display:flex;justify-content:space-between;gap:16px;margin-top:22px;font-size:12.5px;color:#5b6475}
+.rc-foot p{max-width:60%}
+.rc-sign{text-align:center;min-width:120px}
+.rc-sign i{display:block;border-top:1px solid #8a93a3;margin-bottom:6px}
+.demo-note{font-size:13.5px;color:var(--muted);margin-top:14px;display:flex;align-items:center;gap:8px}
+@media print{
+  html.print-card body > *:not(main){display:none !important}
+  html.print-card main > *:not(#demo){display:none !important}
+  html.print-card #demo{padding:0;background:#fff}
+  html.print-card #demo .sh,html.print-card .demo-form,html.print-card .demo-note{display:none !important}
+  html.print-card .demo{display:block}
+  html.print-card .rc{box-shadow:none;border:1px solid #d6dae2}
+}
+
+/* Planner */
+.planner{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:20px;align-items:start}
+.plan-form{padding:clamp(22px,3vw,34px)}
+.plan-step{margin-bottom:26px}
+.plan-step h3{display:flex;align-items:center;gap:10px;font-family:var(--display);font-size:16.5px;font-weight:600;margin-bottom:14px}
+.plan-step h3 span{width:24px;height:24px;border-radius:7px;display:grid;place-items:center;background:var(--navy);color:#fff;font-size:12.5px}
+.opts{display:flex;flex-wrap:wrap;gap:8px}
+.opt{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 14px;border-radius:10px;border:1px solid var(--line-2);background:var(--bg);font-size:14.5px;font-weight:500;color:var(--ink-2);
+  transition:border-color .2s,background-color .2s,color .2s,transform .15s}
+.opt:hover{border-color:var(--ink)}
+.opt:active{transform:scale(.97)}
+.opt[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.opt .ico{font-size:16px}
+.brief{position:sticky;top:96px;padding:clamp(22px,3vw,30px);background:var(--navy);color:var(--on-navy);border:0}
+.brief h3{font-family:var(--display);color:#fff;font-size:18px;font-weight:600;display:flex;justify-content:space-between;align-items:center}
+.brief h3 small{font-family:var(--font);font-size:12.5px;font-weight:500;color:var(--on-navy-muted)}
+.brief pre{white-space:pre-wrap;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13.5px;line-height:1.75;color:#d8e1ee;background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:16px;margin:16px 0;min-height:200px}
+.brief .btn{width:100%}
+.brief .btn + .btn{margin-top:10px}
+.btn-wa{background:#25d366;color:#05210f}
+.btn-wa:hover{background:#1ebe5a}
+.btn-ghost-light{border:1px solid rgba(255,255,255,.22);color:#fff}
+.btn-ghost-light:hover{border-color:#fff}
+.meter{height:6px;border-radius:9px;background:rgba(255,255,255,.1);overflow:hidden;margin-top:12px}
+.meter i{display:block;height:100%;width:0;background:linear-gradient(90deg,#ff9a5a,#ffd08a);transition:width .4s var(--ease)}
+
+@media(max-width:960px){
+  .demo,.planner{grid-template-columns:minmax(0,1fr)}
+  .brief{position:static}
+}
+@media(max-width:560px){
+  .mark{grid-template-columns:minmax(0,1fr) 90px 40px}
+  .rc-info{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .rc-sum{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .rc-foot{flex-direction:column}
+  .rc-foot p{max-width:none}
+}
+
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{animation:none !important;transition:none !important}
@@ -537,10 +672,16 @@ textarea.input{height:auto;min-height:140px;padding:12px 14px;resize:vertical;li
   <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
   <symbol id="i-send" viewBox="0 0 24 24"><path d="m22 2-7 20-4-9-9-4 20-7z"/><path d="M22 2 11 13"/></symbol>
   <symbol id="i-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
+  <symbol id="i-print" viewBox="0 0 24 24"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></symbol>
+  <symbol id="i-shuffle" viewBox="0 0 24 24"><path d="M16 3h5v5M4 20 21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M5 3l14 9-14 9z"/></symbol>
   <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></symbol>
 </svg>
 
 <a class="skip" href="#main">Skip to content</a>
+<div class="progress" id="progress"></div>
 
 <header class="hdr" id="hdr">
   <div class="wrap hdr-in">
@@ -549,11 +690,12 @@ textarea.input{height:auto;min-height:140px;padding:12px 14px;resize:vertical;li
       <a href="#services">Services</a>
       <a href="#work">Work</a>
       <a href="#products">Products</a>
-      <a href="#process">Process</a>
+      <a href="#demo">Live demo</a>
+      <a href="#plan">Plan</a>
       <a href="#about">About</a>
-      <a href="#academy">Academy</a>
     </nav>
     <div class="hdr-cta">
+      <button class="kbtn" id="cmdkBtn" type="button" aria-label="Search and quick actions"><svg class="ico"><use href="#i-search"/></svg><span>Search</span><kbd id="kbdHint">Ctrl K</kbd></button>
       <button class="icon-btn" id="themeBtn" type="button" aria-label="Switch light or dark theme"><svg class="ico i-moon"><use href="#i-moon"/></svg><svg class="ico i-sun"><use href="#i-sun"/></svg></button>
       <a class="btn btn-dark btn-sm" href="#contact">Start a project</a>
       <button class="icon-btn burger" id="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="drawer"><svg class="ico i-menu"><use href="#i-menu"/></svg><svg class="ico i-x"><use href="#i-x"/></svg></button>
@@ -563,7 +705,8 @@ textarea.input{height:auto;min-height:140px;padding:12px 14px;resize:vertical;li
     <a href="#services">Services <svg class="ico"><use href="#i-arrow"/></svg></a>
     <a href="#work">Work <svg class="ico"><use href="#i-arrow"/></svg></a>
     <a href="#products">Products <svg class="ico"><use href="#i-arrow"/></svg></a>
-    <a href="#process">Process <svg class="ico"><use href="#i-arrow"/></svg></a>
+    <a href="#demo">Live demo <svg class="ico"><use href="#i-arrow"/></svg></a>
+    <a href="#plan">Plan a project <svg class="ico"><use href="#i-arrow"/></svg></a>
     <a href="#about">About <svg class="ico"><use href="#i-arrow"/></svg></a>
     <a href="#academy">Academy <svg class="ico"><use href="#i-arrow"/></svg></a>
     <a class="btn btn-accent" href="#contact">Start a project</a>
@@ -574,26 +717,27 @@ textarea.input{height:auto;min-height:140px;padding:12px 14px;resize:vertical;li
 
 <!-- Hero -->
 <section class="hero" id="top">
+  <canvas id="net" aria-hidden="true"></canvas>
   <div class="wrap hero-grid">
     <div>
       <div class="pill rv"><b>Available</b>Taking new projects for 2026</div>
-      <h1 class="h1 rv" style="--d:.06s">Websites and software, <span class="accent">built to work.</span></h1>
+      <h1 class="h1 rv" style="--d:.06s">I build<br/><span class="type" id="typeWord" aria-hidden="true">websites</span><span class="caret" aria-hidden="true"></span><span class="sr-only">websites, online stores, school software, desktop apps and mobile apps</span><br/>that actually work.</h1>
       <p class="lead rv" style="--d:.12s">I'm Sabir Ali, founder of Bitali Aaly. From business websites and online stores to school systems, desktop automation and mobile apps — I design, build and support it end to end.</p>
       <div class="hero-cta rv" style="--d:.18s">
         <a class="btn btn-accent" href="#contact">Start a project <svg class="ico ico-move"><use href="#i-arrow"/></svg></a>
         <a class="btn btn-line" href="#work">See our work</a>
       </div>
       <div class="proof rv" style="--d:.24s">
-        <div><b>800+</b>students on our platforms</div>
-        <div><b>3</b>software products</div>
-        <div><b>24h</b>reply time</div>
+        <div><b data-count="800" data-suffix="+">800+</b>students on our platforms</div>
+        <div><b data-count="3">3</b>software products</div>
+        <div><b data-count="24" data-suffix="h">24h</b>reply time</div>
       </div>
     </div>
-    <div class="stage rv" style="--d:.15s" aria-hidden="true">
+    <div class="stage rv" style="--d:.15s" aria-hidden="true"><div class="tilt" id="tilt">
       <div class="frame f-a"><div class="frame-bar"><i></i><i></i><i></i><span>bitaliaaly-results.bitaliaaly.workers.dev</span></div><img src="/images/software-results.webp" width="670" height="640" alt="" fetchpriority="high"/></div>
       <div class="frame f-b"><div class="frame-bar"><i></i><i></i><i></i><span>ms-academy.onrender.com</span></div><img src="/images/ms-academy.webp" width="900" height="443" alt=""/></div>
       <div class="badge badge-1"><div class="bi"><svg class="ico"><use href="#i-check"/></svg></div><div><b>Live in production</b><span>Web · Android · Windows</span></div></div>
-    </div>
+    </div></div>
   </div>
 </section>
 
@@ -736,6 +880,67 @@ textarea.input{height:auto;min-height:140px;padding:12px 14px;resize:vertical;li
   </div>
 </section>
 
+<!-- Live demo -->
+<section class="section soft" id="demo">
+  <div class="wrap">
+    <div class="sh rv">
+      <div>
+        <span class="eyebrow">Live demo</span>
+        <h2 class="h2">Try it — make a result card in seconds.</h2>
+        <p class="lead">A small taste of BitaliAaly Result &amp; Timetable. Change the name or drag the marks — the card updates instantly, then print it or save it as PDF.</p>
+      </div>
+      <a class="btn btn-line" href="https://bitaliaaly-results.bitaliaaly.workers.dev/#/school" target="_blank" rel="noopener">Open the full app <svg class="ico"><use href="#i-up-right"/></svg></a>
+    </div>
+    <div class="demo">
+      <form class="card demo-form rv" id="demoForm" autocomplete="off" onsubmit="return false">
+        <h3>Student details</h3>
+        <div class="row">
+          <div class="field"><label for="dSchool">School</label><input class="input" id="dSchool" value="The Model School, Lahore" maxlength="40"/></div>
+          <div class="field"><label for="dName">Student name</label><input class="input" id="dName" value="Ayesha Khan" maxlength="30"/></div>
+        </div>
+        <div class="row">
+          <div class="field"><label for="dClass">Class</label><input class="input" id="dClass" value="9th — Science" maxlength="20"/></div>
+          <div class="field"><label for="dRoll">Roll no.</label><input class="input" id="dRoll" value="1042" maxlength="10"/></div>
+        </div>
+        <h3 style="margin-top:6px">Marks (out of 100)</h3>
+        <div class="marks">
+            <div class="mark"><label for="m0">English</label><input type="range" id="m0" min="0" max="100" value="78" data-subject="English"/><output for="m0">78</output></div>
+            <div class="mark"><label for="m1">Urdu</label><input type="range" id="m1" min="0" max="100" value="84" data-subject="Urdu"/><output for="m1">84</output></div>
+            <div class="mark"><label for="m2">Mathematics</label><input type="range" id="m2" min="0" max="100" value="91" data-subject="Mathematics"/><output for="m2">91</output></div>
+            <div class="mark"><label for="m3">Physics</label><input type="range" id="m3" min="0" max="100" value="73" data-subject="Physics"/><output for="m3">73</output></div>
+            <div class="mark"><label for="m4">Computer Science</label><input type="range" id="m4" min="0" max="100" value="88" data-subject="Computer Science"/><output for="m4">88</output></div>
+        </div>
+        <div class="demo-actions">
+          <button class="btn btn-dark btn-sm" type="button" id="dPrint"><svg class="ico"><use href="#i-print"/></svg> Print / Save PDF</button>
+          <button class="btn btn-line btn-sm" type="button" id="dRandom"><svg class="ico"><use href="#i-shuffle"/></svg> Random marks</button>
+        </div>
+      </form>
+      <div class="rv" style="--d:.08s">
+        <article class="rc" id="rc" aria-live="polite">
+          <div class="rc-head"><div class="rc-logo" id="rcLogo">TM</div><div><b id="rcSchool">The Model School, Lahore</b><span>Result Card · Annual Examination 2026</span></div><span class="rc-tag">Sample</span></div>
+          <div class="rc-info">
+            <div>Student<b id="rcName">Ayesha Khan</b></div>
+            <div>Class<b id="rcClass">9th — Science</b></div>
+            <div>Roll no.<b id="rcRoll">1042</b></div>
+          </div>
+          <table>
+            <thead><tr><th>Subject</th><th>Total</th><th>Obtained</th></tr></thead>
+            <tbody id="rcRows"></tbody>
+          </table>
+          <div class="rc-sum">
+            <div><small>Obtained</small><b id="rcTotal">0</b></div>
+            <div><small>Percentage</small><b id="rcPct">0%</b></div>
+            <div><small>Result</small><b id="rcStatus">Pass</b></div>
+            <div class="grade"><small>Grade</small><b id="rcGrade">A</b></div>
+          </div>
+          <div class="rc-foot"><p id="rcRemark">Remarks</p><div class="rc-sign"><i></i>Principal</div></div>
+        </article>
+        <p class="demo-note"><svg class="ico" style="color:var(--accent)"><use href="#i-zap"/></svg>Runs entirely in your browser — nothing is uploaded.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- Process -->
 <section class="section" id="process">
   <div class="wrap">
@@ -779,10 +984,10 @@ textarea.input{height:auto;min-height:140px;padding:12px 14px;resize:vertical;li
 <section class="section" id="reviews">
   <div class="wrap">
     <div class="nums rv">
-      <div><b>800+</b><span>students using our platforms</span></div>
-      <div><b>3</b><span>software products live</span></div>
-      <div><b>8</b><span>developers trained</span></div>
-      <div><b>99%</b><span>uptime on hosted apps</span></div>
+      <div><b data-count="800" data-suffix="+">800+</b><span>students using our platforms</span></div>
+      <div><b data-count="3">3</b><span>software products live</span></div>
+      <div><b data-count="8">8</b><span>developers trained</span></div>
+      <div><b data-count="99" data-suffix="%">99%</b><span>uptime on hosted apps</span></div>
     </div>
     <div class="quotes">
       <figure class="card quote rv">
@@ -901,6 +1106,33 @@ textarea.input{height:auto;min-height:140px;padding:12px 14px;resize:vertical;li
   </div>
 </section>
 
+<!-- Planner -->
+<section class="section" id="plan">
+  <div class="wrap">
+    <div class="sh rv">
+      <div>
+        <span class="eyebrow">Plan your project</span>
+        <h2 class="h2">Build your brief in 30 seconds.</h2>
+        <p class="lead">Tap what you need. Your project brief writes itself — send it on WhatsApp or drop it into the contact form.</p>
+      </div>
+    </div>
+    <div class="planner">
+      <div class="card plan-form rv">
+        <div class="plan-step"><h3><span>1</span>What do you want to build?</h3><div class="opts" role="group" aria-label="Project type"><button type="button" class="opt" data-group="type" aria-pressed="false"><svg class="ico"><use href="#i-globe"/></svg>Business website</button><button type="button" class="opt" data-group="type" aria-pressed="false"><svg class="ico"><use href="#i-cart"/></svg>Online store</button><button type="button" class="opt" data-group="type" aria-pressed="false"><svg class="ico"><use href="#i-layout"/></svg>Web app / SaaS</button><button type="button" class="opt" data-group="type" aria-pressed="false"><svg class="ico"><use href="#i-cap"/></svg>School software</button><button type="button" class="opt" data-group="type" aria-pressed="false"><svg class="ico"><use href="#i-monitor"/></svg>Desktop software</button><button type="button" class="opt" data-group="type" aria-pressed="false"><svg class="ico"><use href="#i-phone-app"/></svg>Mobile app</button><button type="button" class="opt" data-group="type" aria-pressed="false"><svg class="ico"><use href="#i-zap"/></svg>Automation</button><button type="button" class="opt" data-group="type" aria-pressed="false"><svg class="ico"><use href="#i-plus"/></svg>Something else</button></div></div>
+        <div class="plan-step"><h3><span>2</span>Which features do you need?</h3><div class="opts" role="group" aria-label="Features"><button type="button" class="opt" data-group="feat" aria-pressed="false">Login &amp; accounts</button><button type="button" class="opt" data-group="feat" aria-pressed="false">Admin panel</button><button type="button" class="opt" data-group="feat" aria-pressed="false">Online payments</button><button type="button" class="opt" data-group="feat" aria-pressed="false">WhatsApp / email alerts</button><button type="button" class="opt" data-group="feat" aria-pressed="false">Reports &amp; PDF</button><button type="button" class="opt" data-group="feat" aria-pressed="false">Excel import / export</button><button type="button" class="opt" data-group="feat" aria-pressed="false">Urdu + English</button><button type="button" class="opt" data-group="feat" aria-pressed="false">Works offline</button><button type="button" class="opt" data-group="feat" aria-pressed="false">SEO &amp; Google ranking</button><button type="button" class="opt" data-group="feat" aria-pressed="false">Android app version</button></div></div>
+        <div class="plan-step" style="margin-bottom:0"><h3><span>3</span>When do you need it?</h3><div class="opts" role="group" aria-label="Timeline"><button type="button" class="opt" data-group="time" aria-pressed="false">As soon as possible</button><button type="button" class="opt" data-group="time" aria-pressed="false">Within 1 month</button><button type="button" class="opt" data-group="time" aria-pressed="false">1–3 months</button><button type="button" class="opt" data-group="time" aria-pressed="false">Flexible</button></div></div>
+      </div>
+      <aside class="card brief rv" style="--d:.08s" aria-live="polite">
+        <h3>Your project brief <small id="briefPct">0% complete</small></h3>
+        <div class="meter"><i id="briefMeter"></i></div>
+        <pre id="briefText"></pre>
+        <a class="btn btn-wa" id="briefWa" href="https://wa.me/923414717517" target="_blank" rel="noopener"><svg class="ico"><use href="#i-chat"/></svg> Send on WhatsApp</a>
+        <button class="btn btn-ghost-light" type="button" id="briefUse"><svg class="ico"><use href="#i-send"/></svg> Use in contact form</button>
+      </aside>
+    </div>
+  </div>
+</section>
+
 <!-- Contact -->
 <section class="section soft" id="contact">
   <div class="wrap contact">
@@ -949,7 +1181,7 @@ textarea.input{height:auto;min-height:140px;padding:12px 14px;resize:vertical;li
       </div>
       <nav class="f-col" aria-label="Footer">
         <h4>Company</h4>
-        <a href="#services">Services</a><a href="#work">Work</a><a href="#process">Process</a><a href="#about">About</a><a href="#academy">Academy</a>
+        <a href="#services">Services</a><a href="#work">Work</a><a href="#demo">Live demo</a><a href="#plan">Plan a project</a><a href="#process">Process</a><a href="#about">About</a><a href="#academy">Academy</a>
       </nav>
       <div class="f-col">
         <h4>Products</h4>
@@ -971,6 +1203,15 @@ textarea.input{height:auto;min-height:140px;padding:12px 14px;resize:vertical;li
     </div>
   </div>
 </footer>
+
+<div class="cmdk" id="cmdk" aria-hidden="true">
+  <div class="cmdk-box" role="dialog" aria-modal="true" aria-label="Search and quick actions">
+    <div class="cmdk-in"><svg class="ico"><use href="#i-search"/></svg><input id="cmdkInput" type="text" placeholder="Search pages, products or actions…" autocomplete="off" role="combobox" aria-expanded="true" aria-controls="cmdkList"/><kbd>Esc</kbd></div>
+    <ul class="cmdk-list" id="cmdkList" role="listbox"></ul>
+    <div class="cmdk-foot"><span><kbd>↑</kbd> <kbd>↓</kbd> navigate</span><span><kbd>Enter</kbd> open</span><span><kbd>Esc</kbd> close</span></div>
+  </div>
+</div>
+<div class="toast" id="toast" role="status"><svg class="ico"><use href="#i-check"/></svg><span></span></div>
 
 <button class="to-top" id="toTop" type="button" aria-label="Back to top"><svg class="ico"><use href="#i-up"/></svg></button>
 
@@ -998,7 +1239,7 @@ textarea.input{height:auto;min-height:140px;padding:12px 14px;resize:vertical;li
     var spy = new IntersectionObserver(function (es) {
       es.forEach(function (en) { if (en.isIntersecting) links.forEach(function (a) { a.classList.toggle('active', a.getAttribute('href') === '#' + en.target.id); }); });
     }, { rootMargin: '-45% 0px -50% 0px' });
-    ['services', 'work', 'products', 'process', 'about', 'academy'].forEach(function (id) { var s = document.getElementById(id); if (s) spy.observe(s); });
+    ['services', 'work', 'products', 'demo', 'plan', 'about'].forEach(function (id) { var s = document.getElementById(id); if (s) spy.observe(s); });
     var io = new IntersectionObserver(function (es) {
       es.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
@@ -1025,6 +1266,244 @@ textarea.input{height:auto;min-height:140px;padding:12px 14px;resize:vertical;li
     } catch (err) { say('Network error. Please try again or message on WhatsApp.', 'err'); }
     finally { btn.disabled = false; btn.firstElementChild.textContent = 'Send message'; }
   });
+})();
+
+/* ===== Signature features ===== */
+(function () {
+  var doc = document.documentElement;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  function css(v) { return getComputedStyle(doc).getPropertyValue(v).trim(); }
+
+  /* Toast */
+  var toastEl = document.getElementById('toast'), toastT;
+  function toast(msg) {
+    toastEl.querySelector('span').textContent = msg;
+    toastEl.classList.add('show'); clearTimeout(toastT);
+    toastT = setTimeout(function () { toastEl.classList.remove('show'); }, 2200);
+  }
+
+  /* Scroll progress */
+  var bar = document.getElementById('progress'), ticking = false;
+  function prog() {
+    var max = doc.scrollHeight - innerHeight;
+    bar.style.transform = 'scaleX(' + (max > 0 ? scrollY / max : 0) + ')'; ticking = false;
+  }
+  addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(prog); } }, { passive: true });
+  prog();
+
+  /* Typing headline */
+  var words = ['websites', 'online stores', 'school software', 'desktop apps', 'mobile apps', 'automation'];
+  var tw = document.getElementById('typeWord');
+  if (tw && !reduce) {
+    var wi = 0, ci = words[0].length, del = true;
+    function step() {
+      var w = words[wi];
+      if (del) { ci--; if (ci <= 0) { del = false; wi = (wi + 1) % words.length; } }
+      else { ci++; if (ci >= words[wi].length) { del = true; tw.textContent = words[wi]; return setTimeout(step, 1900); } }
+      tw.textContent = words[wi].slice(0, Math.max(ci, 0));
+      setTimeout(step, del ? 45 : 85);
+    }
+    setTimeout(step, 2200);
+  }
+
+  /* Count-up numbers */
+  var counters = document.querySelectorAll('[data-count]');
+  function countUp(el) {
+    var end = +el.dataset.count, suf = el.dataset.suffix || '', t0 = null, dur = 1400;
+    function f(t) {
+      if (!t0) t0 = t;
+      var p = Math.min((t - t0) / dur, 1), e = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(end * e) + suf;
+      if (p < 1) requestAnimationFrame(f);
+    }
+    requestAnimationFrame(f);
+  }
+  if ('IntersectionObserver' in window && !reduce) {
+    var cio = new IntersectionObserver(function (es) {
+      es.forEach(function (en) { if (en.isIntersecting) { countUp(en.target); cio.unobserve(en.target); } });
+    }, { threshold: 0.6 });
+    counters.forEach(function (c) { cio.observe(c); });
+  }
+
+  /* Hero network canvas */
+  var cv = document.getElementById('net'), hero = document.getElementById('top');
+  if (cv && cv.getContext) {
+    var ctx = cv.getContext('2d'), pts = [], W = 0, H = 0, dpr = Math.min(devicePixelRatio || 1, 2), mouse = { x: -9999, y: -9999 }, run = true, raf;
+    var col = {};
+    function colors() { col.dot = css('--faint'); col.acc = css('--accent'); }
+    function size() {
+      var r = hero.getBoundingClientRect(); W = r.width; H = r.height;
+      cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      var n = Math.min(Math.round(W * H / 15000), 80);
+      pts = []; for (var i = 0; i < n; i++) pts.push({ x: Math.random() * W, y: Math.random() * H, vx: (Math.random() - .5) * .35, vy: (Math.random() - .5) * .35 });
+    }
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+      for (var i = 0; i < pts.length; i++) {
+        var p = pts[i];
+        if (!reduce) { p.x += p.vx; p.y += p.vy; if (p.x < 0 || p.x > W) p.vx *= -1; if (p.y < 0 || p.y > H) p.vy *= -1; }
+        for (var j = i + 1; j < pts.length; j++) {
+          var q = pts[j], dx = p.x - q.x, dy = p.y - q.y, d = dx * dx + dy * dy;
+          if (d < 13000) { ctx.globalAlpha = (1 - d / 13000) * .35; ctx.strokeStyle = col.dot; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.stroke(); }
+        }
+        var mx = p.x - mouse.x, my = p.y - mouse.y, md = mx * mx + my * my;
+        if (md < 32000) { ctx.globalAlpha = (1 - md / 32000) * .9; ctx.strokeStyle = col.acc; ctx.lineWidth = 1.2; ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(mouse.x, mouse.y); ctx.stroke(); }
+        ctx.globalAlpha = .55; ctx.fillStyle = md < 32000 ? col.acc : col.dot; ctx.beginPath(); ctx.arc(p.x, p.y, 1.6, 0, 6.283); ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+      if (run && !reduce) raf = requestAnimationFrame(draw);
+    }
+    colors(); size(); draw();
+    addEventListener('resize', function () { size(); if (reduce) draw(); });
+    hero.addEventListener('pointermove', function (e) { var r = hero.getBoundingClientRect(); mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; });
+    hero.addEventListener('pointerleave', function () { mouse.x = mouse.y = -9999; });
+    new MutationObserver(function () { colors(); if (reduce) draw(); }).observe(doc, { attributes: true, attributeFilter: ['data-theme'] });
+    if ('IntersectionObserver' in window) new IntersectionObserver(function (es) {
+      run = es[0].isIntersecting && !document.hidden; cancelAnimationFrame(raf); if (run && !reduce) draw();
+    }).observe(hero);
+  }
+
+  /* 3D tilt on product stack */
+  var tilt = document.getElementById('tilt');
+  if (tilt && fine && !reduce) {
+    hero.addEventListener('pointermove', function (e) {
+      var r = tilt.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+      tilt.style.transform = 'rotateY(' + (x * 12) + 'deg) rotateX(' + (-y * 10) + 'deg)';
+    });
+    hero.addEventListener('pointerleave', function () { tilt.style.transform = ''; });
+  }
+
+  /* Command palette */
+  var cmdk = document.getElementById('cmdk'), input = document.getElementById('cmdkInput'), list = document.getElementById('cmdkList');
+  var isMac = /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent);
+  document.getElementById('kbdHint').textContent = isMac ? '⌘ K' : 'Ctrl K';
+  function go(id) { return function () { var el = document.getElementById(id); if (el) el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' }); }; }
+  function open(u) { return function () { window.open(u, '_blank', 'noopener'); }; }
+  var cmds = [
+    { g: 'Pages', t: 'Services', i: 'i-layout', run: go('services') },
+    { g: 'Pages', t: 'Selected work', i: 'i-globe', run: go('work') },
+    { g: 'Pages', t: 'Our products', i: 'i-monitor', run: go('products') },
+    { g: 'Pages', t: 'Live demo — result card', i: 'i-play', run: go('demo') },
+    { g: 'Pages', t: 'Plan your project', i: 'i-pen', run: go('plan') },
+    { g: 'Pages', t: 'Process', i: 'i-check', run: go('process') },
+    { g: 'Pages', t: 'About Sabir Ali', i: 'i-users', run: go('about') },
+    { g: 'Pages', t: 'Academy & students', i: 'i-cap', run: go('academy') },
+    { g: 'Pages', t: 'Contact', i: 'i-mail', run: go('contact') },
+    { g: 'Products', t: 'Open Result & Timetable', i: 'i-up-right', run: open('https://bitaliaaly-results.bitaliaaly.workers.dev/#/school') },
+    { g: 'Products', t: 'Open Progress Tracker', i: 'i-up-right', run: open('https://bitaliaaly-progress.bitaliaaly.workers.dev/') },
+    { g: 'Products', t: 'Download Data Entry Solution', i: 'i-download', run: open('https://license-server.bitaliaaly.workers.dev/download') },
+    { g: 'Actions', t: 'Chat on WhatsApp', i: 'i-chat', k: '0341-4717517', run: open('https://wa.me/923414717517') },
+    { g: 'Actions', t: 'Copy email address', i: 'i-copy', k: 'ms.production.house.pk@gmail.com', run: function () {
+        var e = 'ms.production.house.pk@gmail.com';
+        (navigator.clipboard ? navigator.clipboard.writeText(e) : Promise.reject()).then(function () { toast('Email copied'); }, function () { location.href = 'mailto:' + e; });
+      } },
+    { g: 'Actions', t: 'Toggle light / dark theme', i: 'i-moon', run: function () { document.getElementById('themeBtn').click(); } },
+    { g: 'Actions', t: 'View GitHub', i: 'i-github', run: open('https://github.com/sabirsikandar4599') }
+  ];
+  var shown = [], sel = 0, lastFocus;
+  function render() {
+    var q = input.value.trim().toLowerCase();
+    shown = cmds.filter(function (c) { return !q || (c.t + ' ' + c.g + ' ' + (c.k || '')).toLowerCase().indexOf(q) > -1; });
+    sel = Math.min(sel, Math.max(shown.length - 1, 0));
+    var html = '', g = '';
+    shown.forEach(function (c, i) {
+      if (c.g !== g) { g = c.g; html += '<li class="cmdk-g" role="presentation">' + g + '</li>'; }
+      html += '<li class="cmdk-item" role="option" id="ck' + i + '" data-i="' + i + '" aria-selected="' + (i === sel) + '"><svg class="ico"><use href="#' + c.i + '"/></svg>' + c.t + (c.k ? '<small>' + c.k + '</small>' : '') + '</li>';
+    });
+    list.innerHTML = html || '<li class="cmdk-empty">No results for “' + input.value.replace(/[<>&]/g, '') + '”</li>';
+    input.setAttribute('aria-activedescendant', shown.length ? 'ck' + sel : '');
+    var a = document.getElementById('ck' + sel); if (a) a.scrollIntoView({ block: 'nearest' });
+  }
+  function openK() { lastFocus = document.activeElement; cmdk.classList.add('open'); cmdk.setAttribute('aria-hidden', 'false'); input.value = ''; sel = 0; render(); setTimeout(function () { input.focus(); }, 10); document.body.style.overflow = 'hidden'; }
+  function closeK() { cmdk.classList.remove('open'); cmdk.setAttribute('aria-hidden', 'true'); document.body.style.overflow = ''; if (lastFocus) lastFocus.focus(); }
+  function exec(i) { var c = shown[i]; if (!c) return; closeK(); setTimeout(c.run, 30); }
+  document.getElementById('cmdkBtn').addEventListener('click', openK);
+  document.addEventListener('keydown', function (e) {
+    if ((e.ctrlKey || e.metaKey) && (e.key === 'k' || e.key === 'K')) { e.preventDefault(); cmdk.classList.contains('open') ? closeK() : openK(); return; }
+    if (!cmdk.classList.contains('open')) return;
+    if (e.key === 'Escape') { e.preventDefault(); closeK(); }
+    else if (e.key === 'ArrowDown') { e.preventDefault(); sel = (sel + 1) % Math.max(shown.length, 1); render(); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); sel = (sel - 1 + shown.length) % Math.max(shown.length, 1); render(); }
+    else if (e.key === 'Enter') { e.preventDefault(); exec(sel); }
+    else if (e.key === 'Tab') { e.preventDefault(); input.focus(); }
+  });
+  input.addEventListener('input', function () { sel = 0; render(); });
+  list.addEventListener('click', function (e) { var li = e.target.closest('.cmdk-item'); if (li) exec(+li.dataset.i); });
+  list.addEventListener('mousemove', function (e) { var li = e.target.closest('.cmdk-item'); if (li && +li.dataset.i !== sel) { sel = +li.dataset.i; render(); } });
+  cmdk.addEventListener('click', function (e) { if (e.target === cmdk) closeK(); });
+
+  /* Live demo: result card */
+  var $ = function (id) { return document.getElementById(id); };
+  var ranges = document.querySelectorAll('.mark input[type=range]');
+  function grade(p) { return p >= 80 ? 'A+' : p >= 70 ? 'A' : p >= 60 ? 'B' : p >= 50 ? 'C' : p >= 40 ? 'D' : 'F'; }
+  var remarks = { 'A+': 'Outstanding performance — keep it up!', 'A': 'Excellent work with strong understanding.', 'B': 'Very good — a little more practice in weaker subjects.', 'C': 'Good effort — focus on regular revision.', 'D': 'Needs improvement — extra attention recommended.', 'F': 'Must work harder — please meet the class teacher.' };
+  function esc(s) { return s.replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+  function initials(s) { return (s.match(/\b[A-Za-z]/g) || ['S']).slice(0, 2).join('').toUpperCase(); }
+  function card() {
+    var rows = '', total = 0, failed = false;
+    ranges.forEach(function (r) {
+      var v = +r.value; total += v; if (v < 33) failed = true;
+      r.nextElementSibling.textContent = v;
+      rows += '<tr><td>' + r.dataset.subject + '<div class="bar"><i class="' + (v < 33 ? 'low' : '') + '" style="width:' + v + '%"></i></div></td><td>100</td><td>' + v + '</td></tr>';
+    });
+    var pct = total / (ranges.length * 100) * 100, g = failed ? 'F' : grade(pct);
+    $('rcRows').innerHTML = rows;
+    $('rcTotal').textContent = total + '/' + ranges.length * 100;
+    $('rcPct').textContent = pct.toFixed(1) + '%';
+    $('rcStatus').textContent = failed ? 'Fail' : 'Pass';
+    $('rcStatus').style.color = failed ? '#dc2626' : '#16a34a';
+    $('rcGrade').textContent = g;
+    $('rcRemark').textContent = remarks[g];
+    var school = $('dSchool').value.trim() || 'Your School';
+    $('rcSchool').textContent = school; $('rcLogo').textContent = initials(school);
+    $('rcName').textContent = $('dName').value.trim() || '—';
+    $('rcClass').textContent = $('dClass').value.trim() || '—';
+    $('rcRoll').textContent = $('dRoll').value.trim() || '—';
+  }
+  if ($('demoForm')) {
+    $('demoForm').addEventListener('input', card);
+    $('dRandom').addEventListener('click', function () { ranges.forEach(function (r) { r.value = 35 + Math.round(Math.random() * 65); }); card(); });
+    $('dPrint').addEventListener('click', function () {
+      doc.classList.add('print-card'); window.print();
+      setTimeout(function () { doc.classList.remove('print-card'); }, 500);
+    });
+    addEventListener('afterprint', function () { doc.classList.remove('print-card'); });
+    card();
+  }
+
+  /* Project planner */
+  var opts = document.querySelectorAll('.opt'), btext = $('briefText');
+  function picked(g) { return Array.prototype.filter.call(opts, function (o) { return o.dataset.group === g && o.getAttribute('aria-pressed') === 'true'; }).map(function (o) { return o.textContent.trim(); }); }
+  function brief() {
+    var t = picked('type'), f = picked('feat'), w = picked('time');
+    var lines = ['Hi Sabir, I would like to discuss a project.', '', 'Project:  ' + (t[0] || '—'), 'Features: ' + (f.length ? f.join(', ') : '—'), 'Timeline: ' + (w[0] || '—')];
+    var txt = lines.join('\n');
+    btext.textContent = txt;
+    var score = (t.length ? 40 : 0) + (f.length ? 40 : 0) + (w.length ? 20 : 0);
+    $('briefMeter').style.width = score + '%'; $('briefPct').textContent = score + '% complete';
+    $('briefWa').href = 'https://wa.me/923414717517?text=' + encodeURIComponent(txt);
+    return { txt: txt, type: t[0] };
+  }
+  opts.forEach(function (o) {
+    o.addEventListener('click', function () {
+      var single = o.dataset.group !== 'feat', on = o.getAttribute('aria-pressed') === 'true';
+      if (single) opts.forEach(function (x) { if (x.dataset.group === o.dataset.group) x.setAttribute('aria-pressed', 'false'); });
+      o.setAttribute('aria-pressed', on && !single ? 'false' : (single && on ? 'false' : 'true'));
+      brief();
+    });
+  });
+  if (btext) {
+    brief();
+    $('briefUse').addEventListener('click', function () {
+      var b = brief();
+      $('cfs').value = b.type || 'New project';
+      $('cfm').value = b.txt;
+      go('contact')();
+      setTimeout(function () { $('cfn').focus({ preventScroll: true }); }, 600);
+      toast('Brief added to the contact form');
+    });
+  }
 })();
 </script>
 </body>
