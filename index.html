@@ -490,6 +490,38 @@ details[open] summary .ico{transform:rotate(45deg)}
   background:var(--ink);color:var(--bg);font-size:14.5px;font-weight:500;transition:opacity .25s,transform .25s var(--ease)}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 
+
+/* Chat widget */
+.chat-fab{position:fixed;right:20px;bottom:20px;z-index:80;display:flex;align-items:center;gap:10px;height:58px;padding:0 22px 0 18px;border-radius:999px;background:var(--accent);color:#0b0b0b;
+  font-weight:600;font-size:15px;box-shadow:0 18px 40px -12px rgba(255,91,20,.6);transition:transform .3s var(--ease)}
+.chat-fab:hover{transform:translateY(-3px)}
+.chat-fab .ico{font-size:22px}
+.chat-fab .dot{position:absolute;top:10px;right:14px;width:9px;height:9px;border-radius:50%;background:#3ddc84;border:2px solid var(--accent)}
+.chat{position:fixed;right:20px;bottom:92px;z-index:85;width:min(380px,calc(100vw - 32px));max-height:calc(100svh - 120px);display:flex;flex-direction:column;
+  background:var(--bg-2);border:1px solid var(--line-2);border-radius:22px;box-shadow:0 40px 80px -20px rgba(0,0,0,.8);overflow:hidden;
+  opacity:0;transform:translateY(16px) scale(.97);transform-origin:bottom right;pointer-events:none;transition:opacity .3s var(--ease),transform .3s var(--ease)}
+.chat.open{opacity:1;transform:none;pointer-events:auto}
+.chat-head{display:flex;align-items:center;gap:12px;padding:16px 18px;background:var(--accent);color:#0b0b0b}
+.chat-head img{width:42px;height:42px;border-radius:50%;object-fit:cover;object-position:center 18%;border:2px solid #0b0b0b}
+.chat-head b{display:block;font-size:15.5px}
+.chat-head span{font-size:12.5px;opacity:.8}
+.chat-x{margin-left:auto;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:rgba(0,0,0,.12)}
+.chat-x .ico{font-size:18px;transform:rotate(45deg)}
+.chat-x:hover{background:rgba(0,0,0,.22)}
+.chat-body{padding:18px;overflow:auto}
+.bubble{max-width:88%;padding:12px 14px;border-radius:16px 16px 16px 4px;background:var(--bg-3);font-size:14.5px;line-height:1.55;color:var(--ink-2)}
+.bubble.me{margin-left:auto;border-radius:16px 16px 4px 16px;background:var(--accent);color:#0b0b0b;white-space:pre-wrap;word-break:break-word}
+.bubble + .bubble{margin-top:10px}
+.chat-form{display:grid;gap:10px;margin-top:16px}
+.chat-form .input{height:46px;font-size:14.5px;border-radius:12px}
+.chat-form textarea.input{min-height:90px}
+.chat-form .btn{height:48px}
+.chat-form small{font-size:12px;color:var(--faint);text-align:center}
+.chat-form small a{color:var(--ink-2);text-decoration:underline}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.chat-err{font-size:13.5px;color:#ff6b6b}
+@media(max-width:600px){.chat-fab span{display:none}.chat-fab{width:58px;padding:0;justify-content:center}.chat{right:16px;bottom:88px}}
+
 /* Responsive */
 @media(max-width:1080px){
   .prod-grid{grid-template-columns:minmax(0,1fr);max-width:640px}
@@ -963,6 +995,24 @@ details[open] summary .ico{transform:rotate(45deg)}
 </div>
 <div class="toast" id="toast" role="status"><span></span></div>
 
+<button class="chat-fab" id="chatFab" type="button" aria-expanded="false" aria-controls="chat"><svg class="ico"><use href="#i-chat"/></svg><span>Message us</span><i class="dot" aria-hidden="true"></i></button>
+<section class="chat" id="chat" role="dialog" aria-label="Send a message to Bitali Aaly" aria-hidden="true">
+  <div class="chat-head"><img src="/images/sabir-ali.webp" width="545" height="820" alt=""/><div><b>Sabir Ali</b><span>Usually replies within a few hours</span></div><button class="chat-x" id="chatX" type="button" aria-label="Close chat"><svg class="ico"><use href="#i-plus"/></svg></button></div>
+  <div class="chat-body" id="chatBody">
+    <div class="bubble">Assalam o Alaikum! 👋 Tell me what you need — your message goes straight to my WhatsApp. No need to open any app.</div>
+    <form class="chat-form" id="chatForm" novalidate>
+      <input class="input" name="name" type="text" autocomplete="name" placeholder="Your name" maxlength="80" required aria-label="Your name"/>
+      <input class="input" name="phone" type="tel" autocomplete="tel" placeholder="WhatsApp / phone number" maxlength="30" aria-label="WhatsApp or phone number"/>
+      <input class="input" name="email" type="email" autocomplete="email" placeholder="Email (optional)" maxlength="120" aria-label="Email"/>
+      <textarea class="input" name="message" placeholder="Your message…" maxlength="2000" required aria-label="Message"></textarea>
+      <input class="hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true"/>
+      <p class="chat-err" id="chatErr" role="alert"></p>
+      <button class="btn btn-accent" type="submit" id="chatSend"><span>Send message</span> <svg class="ico"><use href="#i-send"/></svg></button>
+      <small>Prefer the app? <a href="https://wa.me/923414717517" target="_blank" rel="noopener">Open WhatsApp</a></small>
+    </form>
+  </div>
+</section>
+
 <script>
 (function () {
   var doc = document.documentElement, $ = function (id) { return document.getElementById(id); };
@@ -1126,6 +1176,34 @@ details[open] summary .ico{transform:rotate(45deg)}
   input.addEventListener('input', function () { sel = 0; render(); });
   list.addEventListener('click', function (e) { var li = e.target.closest('.cmdk-item'); if (li) exec(+li.dataset.i); });
   cmdk.addEventListener('click', function (e) { if (e.target === cmdk) closeK(); });
+
+
+  /* Chat widget → /api/message (WhatsApp + email on the server) */
+  var chat = $('chat'), fab = $('chatFab'), cform = $('chatForm');
+  function setChat(o) { chat.classList.toggle('open', o); chat.setAttribute('aria-hidden', !o); fab.setAttribute('aria-expanded', o); if (o) setTimeout(function () { cform.name.focus(); }, 150); }
+  fab.addEventListener('click', function () { setChat(!chat.classList.contains('open')); });
+  $('chatX').addEventListener('click', function () { setChat(false); fab.focus(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && chat.classList.contains('open')) setChat(false); });
+  cform.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    var err = $('chatErr'), send = $('chatSend');
+    var p = { name: cform.name.value.trim(), phone: cform.phone.value.trim(), email: cform.email.value.trim(), message: cform.message.value.trim(), website: cform.website.value, subject: 'Chat message' };
+    if (!p.name || !p.message) { err.textContent = 'Please add your name and a message.'; return; }
+    if (!p.phone && !p.email) { err.textContent = 'Please add a phone number or email so we can reply.'; return; }
+    if (p.email && !cform.email.checkValidity()) { err.textContent = 'Please enter a valid email address.'; return; }
+    err.textContent = ''; send.disabled = true; send.firstElementChild.textContent = 'Sending…';
+    try {
+      var res = await fetch('/api/message', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(p) });
+      var data = await res.json().catch(function () { return {}; });
+      if (!res.ok || !data.ok) throw new Error(data.error || 'Could not send right now.');
+      var mine = document.createElement('div'); mine.className = 'bubble me'; mine.textContent = p.message;
+      var reply = document.createElement('div'); reply.className = 'bubble'; reply.textContent = 'Thanks ' + p.name.split(' ')[0] + '! Your message has reached Sabir — you’ll get a reply on ' + (p.phone ? 'WhatsApp' : 'email') + ' soon.';
+      cform.replaceWith(mine); mine.after(reply);
+    } catch (ex) {
+      err.textContent = ex.message + ' You can also use WhatsApp below.';
+      send.disabled = false; send.firstElementChild.textContent = 'Send message';
+    }
+  });
 
   $('yr').textContent = new Date().getFullYear();
 })();
