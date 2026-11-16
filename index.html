@@ -540,6 +540,90 @@ details[open] summary .ico{transform:rotate(45deg)}
 .chat-err{font-size:13.5px;color:#ff6b6b}
 @media(max-width:600px){.chat-fab span{display:none}.chat-fab{width:58px;padding:0;justify-content:center}.chat{right:16px;bottom:88px}}
 
+
+/* ── Developer signature: grid, cursor, live code, terminal ── */
+.hero{isolation:isolate}
+#grid{position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none;
+  -webkit-mask-image:linear-gradient(#000 55%,transparent);mask-image:linear-gradient(#000 55%,transparent)}
+.cur{position:fixed;left:0;top:0;width:34px;height:34px;margin:-17px 0 0 -17px;border:1.5px solid var(--accent);border-radius:50%;pointer-events:none;z-index:99;opacity:0;
+  transition:opacity .3s,width .3s var(--ease),height .3s var(--ease),margin .3s var(--ease),background-color .3s}
+.cur.on{opacity:.85}
+.cur.big{width:64px;height:64px;margin:-32px 0 0 -32px;background:rgba(255,91,20,.12)}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.dots{display:flex;gap:7px;margin-right:14px}
+.dots i{width:11px;height:11px;border-radius:50%;background:#ff5f57}
+.dots i:nth-child(2){background:#febc2e}.dots i:nth-child(3){background:#28c840}
+
+.ide{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);border:1px solid var(--line-2);border-radius:22px;overflow:hidden;background:#0e0e0f;box-shadow:0 70px 120px -70px rgba(255,91,20,.55)}
+.ide-pane{display:flex;flex-direction:column;min-width:0;border-right:1px solid var(--line)}
+.ide-tabs{display:flex;align-items:center;height:46px;padding:0 14px;background:#151516;border-bottom:1px solid var(--line)}
+.ide-tab{height:46px;display:inline-flex;align-items:center;padding:0 14px;font-size:12.5px;color:var(--faint);border-bottom:2px solid transparent}
+.ide-tab.on{color:var(--ink);border-color:var(--accent);background:#0e0e0f}
+.ide-replay{margin-left:auto;display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 12px;border-radius:999px;border:1px solid var(--line-2);font-size:12.5px;color:var(--ink-2);transition:border-color .25s,color .25s}
+.ide-replay:hover{border-color:var(--accent);color:var(--accent)}
+.ide-code{flex:1;margin:0;padding:20px 0;min-height:336px;font-size:14.5px;line-height:1.95;overflow-x:auto;color:#d6d1c8}
+.ln{display:flex;white-space:pre;padding-right:20px}
+.ln .no{width:52px;flex-shrink:0;text-align:right;padding-right:18px;color:#4a4640;user-select:none}
+.ln.act{background:rgba(255,255,255,.04)}
+.ln.act .no{color:var(--ink-2)}
+.tk-c{color:#6b665f;font-style:italic}.tk-k{color:#ff8a3d}.tk-f{color:#f0d77a}.tk-s{color:#9fe3b4}.tk-n{color:#7cc7ff}.tk-a{color:#e6b3ff}.tk-v{color:#f3efe8}.tk-p{color:#a8a39b}
+.caret2{display:inline-block;width:8px;height:1.1em;background:var(--accent);vertical-align:text-bottom;animation:blink2 1s steps(1) infinite}
+@keyframes blink2{50%{opacity:0}}
+.ide-status{display:flex;gap:18px;align-items:center;height:30px;padding:0 14px;background:var(--accent);color:#0b0b0b;font-size:11.5px;font-weight:600}
+.ide-status span:nth-child(2){margin-left:auto}
+.ide-preview{display:flex;flex-direction:column;min-width:0;background:radial-gradient(90% 70% at 100% 0%,rgba(255,91,20,.14),transparent 60%),#131313}
+.ide-ptitle{display:flex;justify-content:space-between;align-items:center;height:46px;padding:0 18px;border-bottom:1px solid var(--line);font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.live{display:inline-flex;align-items:center;gap:8px;color:#3ddc84}
+.live i{width:7px;height:7px;border-radius:50%;background:#3ddc84;animation:blink2 1.4s ease-in-out infinite}
+.pv{flex:1;display:grid;place-items:center;padding:28px}
+.pv-card{--pv:#b9b2a6;width:100%;max-width:340px;background:#fffdf9;color:#141210;border-radius:18px;padding:22px;box-shadow:0 30px 60px -30px rgba(0,0,0,.9);border-top:6px solid var(--pv);transition:border-color .6s}
+.pv-head{display:flex;gap:12px;align-items:center;padding-bottom:14px;border-bottom:1px dashed #d8d2c8}
+.pv-logo{width:40px;height:40px;border-radius:50%;background:#141210;color:#fffdf9;display:grid;place-items:center;font-family:var(--display);font-weight:800;font-size:14px;flex-shrink:0}
+.pv-head b{display:block;min-width:150px;font-family:var(--display);font-stretch:110%;font-weight:800;font-size:16px;line-height:1.3}
+.pv-head small{font-size:12px;color:#6f685e}
+.pv-student{margin:14px 0 8px;width:62%;min-height:24px;font-weight:600;font-size:15px}
+.pv-row{display:grid;grid-template-columns:64px 1fr 28px;gap:10px;align-items:center;font-size:13px;padding:6px 0}
+.pv-bar{height:6px;border-radius:9px;background:#efeae2;overflow:hidden}
+.pv-bar i{display:block;height:100%;width:0;border-radius:9px;background:var(--pv);transition:width .9s var(--ease),background-color .6s}
+.pv-row b{text-align:right;font-variant-numeric:tabular-nums}
+.pv-foot{display:flex;justify-content:space-between;align-items:center;margin-top:12px;padding-top:14px;border-top:1px solid #efeae2;min-height:54px}
+.pv-grade{display:flex;align-items:baseline;gap:8px}
+.pv-grade small{font-size:12px;color:#6f685e}
+.pv-grade b{font-family:var(--display);font-stretch:115%;font-weight:800;font-size:26px;color:var(--pv);transition:color .6s}
+.pv-pdf{font-size:12px;font-weight:600;padding:6px 11px;border-radius:999px;background:#141210;color:#fffdf9;opacity:0;transform:translateY(6px);transition:opacity .5s,transform .5s var(--ease)}
+.pv-pdf.show{opacity:1;transform:none}
+.sk{color:transparent !important;background:linear-gradient(90deg,#ece6dc,#f8f4ee,#ece6dc) 0 0/200% 100% !important;border-radius:6px;animation:sk 1.4s linear infinite}
+.pv-logo.sk{border-radius:50%}
+@keyframes sk{to{background-position:-200% 0}}
+.ide-note{display:flex;align-items:center;gap:8px;margin-top:18px;font-size:13.5px;color:var(--muted)}
+.ide-note .ico{color:var(--accent)}
+
+.term-grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(28px,5vw,72px);align-items:center}
+.term-grid .h2{font-size:clamp(34px,4.3vw,66px)}
+.term-grid p{color:var(--muted);margin:22px 0 24px;max-width:420px;font-size:16.5px}
+.term{border:1px solid var(--line-2);border-radius:18px;overflow:hidden;background:#090909;box-shadow:0 60px 110px -60px rgba(255,91,20,.5);font-size:14px;transition:border-color .3s;cursor:text}
+.term:focus-within{border-color:var(--accent)}
+.term-bar{display:flex;align-items:center;height:42px;padding:0 14px;background:#161616;border-bottom:1px solid var(--line);color:var(--muted);font-size:12.5px}
+.term-bar b{margin:0 auto;font-weight:400;padding-right:52px}
+.term-out{height:340px;overflow-y:auto;padding:16px 18px 4px;line-height:1.75;color:var(--ink-2)}
+.tline{white-space:pre-wrap;word-break:break-word}
+.tline a{color:var(--accent-2);text-decoration:underline;text-underline-offset:3px}
+.tp{color:#3ddc84}.th{color:var(--accent)}.td{color:var(--faint)}.tw{color:var(--ink)}
+.term-in{display:flex;align-items:center;gap:10px;padding:8px 18px 16px}
+.term-in label{color:#3ddc84;white-space:nowrap}
+.term-in input{flex:1;min-width:0;background:transparent;border:0;outline:none;font:inherit;font-size:16px;color:var(--ink);caret-color:var(--accent)}
+@media(max-width:900px){
+  .ide,.term-grid{grid-template-columns:minmax(0,1fr)}
+  .ide-pane{border-right:0;border-bottom:1px solid var(--line)}
+}
+@media(max-width:600px){
+  .ide-code{font-size:12.5px;min-height:300px}
+  .ln .no{width:38px;padding-right:12px}
+  .ide-tab:not(.on){display:none}
+  .term{font-size:13px}
+  .term-out{height:300px}
+}
+
 /* Responsive */
 @media(max-width:1080px){
   .prod-grid{grid-template-columns:minmax(0,1fr);max-width:640px}
@@ -635,6 +719,7 @@ details[open] summary .ico{transform:rotate(45deg)}
 
 <!-- Hero -->
 <section class="hero" id="top">
+  <canvas id="grid" aria-hidden="true"></canvas>
   <div class="wrap">
     <div class="hero-top rv">
       <span class="avail"><i></i>Available for new projects</span>
@@ -665,6 +750,39 @@ details[open] summary .ico{transform:rotate(45deg)}
     <span>Websites</span><span>Web apps</span><span>Desktop software</span><span>Mobile apps</span><span>School systems</span><span>Automation</span><span>E-commerce</span>
   </div>
 </div>
+
+<!-- Live code -->
+<section class="section" id="craft" style="padding-bottom:0">
+  <div class="wrap">
+    <div class="sh">
+      <div><span class="kicker rv"><i></i>Craft</span><h2 class="h2 rv">Code that <em>ships</em></h2></div>
+      <p class="rv">Watch a result card get built line by line — the same way we build real products.</p>
+    </div>
+    <div class="ide rv">
+      <div class="ide-pane">
+        <div class="ide-tabs mono"><span class="dots"><i></i><i></i><i></i></span><span class="ide-tab on">result-card.js</span><span class="ide-tab">styles.css</span><span class="ide-tab">api.js</span><button class="ide-replay" id="ideReplay" type="button">↻ Replay</button></div>
+        <pre class="ide-code mono" id="ideCode" aria-label="Code being typed: a result card is created with a school, student, marks and theme, then graded and exported as PDF"></pre>
+        <div class="ide-status mono"><span>⎇ main</span><span>JavaScript</span><span id="ideLn">Ln 1, Col 1</span><span>UTF-8</span></div>
+      </div>
+      <div class="ide-preview" aria-hidden="true">
+        <div class="ide-ptitle"><span>Preview</span><span class="live"><i></i>Live</span></div>
+        <div class="pv">
+          <div class="pv-card" id="pvCard">
+            <div class="pv-head"><span class="pv-logo sk" id="pvLogo">TM</span><div><b class="sk" id="pvSchool">The Model School</b><small>Result Card · 2026</small></div></div>
+            <div class="pv-student sk" id="pvStudent">Ayesha Khan</div>
+            <div id="pvRows">
+              <div class="pv-row"><span>English</span><div class="pv-bar"><i></i></div><b>—</b></div>
+              <div class="pv-row"><span>Maths</span><div class="pv-bar"><i></i></div><b>—</b></div>
+              <div class="pv-row"><span>Physics</span><div class="pv-bar"><i></i></div><b>—</b></div>
+            </div>
+            <div class="pv-foot"><div class="pv-grade"><small>Grade</small><b id="pvGrade">—</b></div><span class="pv-pdf" id="pvPdf">result-card.pdf ✓</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="ide-note rv"><svg class="ico"><use href="#i-code"/></svg>This website is custom-coded from scratch — no templates, no page builders.</p>
+  </div>
+</section>
 
 <!-- Intro -->
 <section class="section" id="intro">
@@ -857,8 +975,30 @@ details[open] summary .ico{transform:rotate(45deg)}
   </div>
 </section>
 
+<!-- Terminal -->
+<section class="section" id="terminal" style="background:var(--bg-2);border-block:1px solid var(--line)">
+  <div class="wrap term-grid">
+    <div>
+      <span class="kicker rv"><i></i>Developer mode</span>
+      <h2 class="h2 rv">Ask the <em>terminal</em></h2>
+      <p class="rv">A real, working terminal. Type a command — or tap one below.</p>
+      <div class="chips rv" id="termChips">
+        <button type="button" class="chip" data-cmd="help">help</button><button type="button" class="chip" data-cmd="whoami">whoami</button>
+        <button type="button" class="chip" data-cmd="skills">skills</button><button type="button" class="chip" data-cmd="projects">projects</button>
+        <button type="button" class="chip" data-cmd="products">products</button><button type="button" class="chip" data-cmd="contact">contact</button>
+        <button type="button" class="chip" data-cmd="sudo hire sabir">sudo hire sabir</button>
+      </div>
+    </div>
+    <div class="term mono rv" id="term" style="--d:.1s">
+      <div class="term-bar"><span class="dots"><i></i><i></i><i></i></span><b>sabir@bitali — zsh</b></div>
+      <div class="term-out" id="termOut" role="log" aria-live="polite"></div>
+      <form class="term-in" id="termForm" autocomplete="off"><label for="termInput">sabir@bitali:~$</label><input id="termInput" type="text" autocapitalize="off" autocorrect="off" spellcheck="false" enterkeyhint="send" aria-label="Terminal command"/></form>
+    </div>
+  </div>
+</section>
+
 <!-- Testimonials -->
-<section class="section" id="reviews" style="padding-top:0">
+<section class="section" id="reviews">
   <div class="wrap">
     <span class="kicker rv"><i></i>Client words</span>
     <div class="quote-wrap rv" style="margin-top:28px">
@@ -1058,18 +1198,20 @@ details[open] summary .ico{transform:rotate(45deg)}
   burger.addEventListener('click', function () { setMenu(!hdr.classList.contains('open')); });
   document.querySelectorAll('#drawer a').forEach(function (a) { a.addEventListener('click', function () { setMenu(false); }); });
 
-  /* Rotating hero word */
+  /* Rotating hero word — scramble/decode */
   var words = ['websites', 'web apps', 'software', 'mobile apps', 'stores'], rot = $('rot');
   if (rot && !reduce) {
-    var wi = 0;
+    var wi = 0, glyphs = 'ABCDEFGHIKLMNOPRSTUVXYZ<>/{}#=+*';
     setInterval(function () {
-      rot.style.transition = 'opacity .35s, transform .35s'; rot.style.opacity = 0; rot.style.transform = 'translateY(-30%)';
-      setTimeout(function () {
-        wi = (wi + 1) % words.length; rot.textContent = words[wi];
-        rot.style.transition = 'none'; rot.style.transform = 'translateY(30%)';
-        requestAnimationFrame(function () { requestAnimationFrame(function () { rot.style.transition = 'opacity .45s, transform .45s'; rot.style.opacity = 1; rot.style.transform = 'none'; }); });
-      }, 360);
-    }, 2600);
+      var from = rot.textContent.length; wi = (wi + 1) % words.length;
+      var to = words[wi], f = 0, total = 16;
+      (function tick() {
+        var shown = Math.floor(f / total * to.length), len = Math.round(from + (to.length - from) * f / total), out = to.slice(0, shown);
+        for (var i = shown; i < len; i++) out += to[i] === ' ' ? ' ' : glyphs[Math.floor(Math.random() * glyphs.length)];
+        rot.textContent = f >= total ? to : out;
+        if (f++ < total) setTimeout(tick, 42);
+      })();
+    }, 2800);
   }
 
   /* Reveal, active nav, count-up */
@@ -1156,6 +1298,7 @@ details[open] summary .ico{transform:rotate(45deg)}
   var cmds = [
     { g: 'Pages', t: 'Selected work', run: go('work') }, { g: 'Pages', t: 'Our products', run: go('products') },
     { g: 'Pages', t: 'Services', run: go('services') }, { g: 'Pages', t: 'Live demo — result card', run: go('demo') },
+    { g: 'Pages', t: 'Live code — watch it build', run: go('craft') }, { g: 'Pages', t: 'Terminal', run: go('terminal') },
     { g: 'Pages', t: 'Process', run: go('process') }, { g: 'Pages', t: 'About Sabir Ali', run: go('about') },
     { g: 'Pages', t: 'Academy & students', run: go('academy') }, { g: 'Pages', t: 'Contact', run: go('contact') },
     { g: 'Products', t: 'Open Result & Timetable', run: open('https://bitaliaaly-results.bitaliaaly.workers.dev/#/school') },
@@ -1223,6 +1366,156 @@ details[open] summary .ico{transform:rotate(45deg)}
       send.disabled = false; send.firstElementChild.textContent = 'Send message';
     }
   });
+
+  /* ── Developer signature ── */
+  var fine = matchMedia('(hover: hover) and (pointer: fine)').matches;
+  try { console.log('%cBitali Aaly', 'font:800 30px Archivo,Arial,sans-serif;color:#ff5b14', '\nBuilt by Sabir Ali s/o Hakim Ali — custom-coded, no templates.\nWant to work together?  https://wa.me/923414717517'); } catch (e) {}
+
+  /* Hero dot grid that reacts to the cursor */
+  (function () {
+    var cv = $('grid'), hero = $('top'); if (!cv || !cv.getContext) return;
+    var ctx = cv.getContext('2d'), W, H, dpr = Math.min(devicePixelRatio || 1, 2), mx = -999, my = -999, queued = false, GAP = 38, R = 170;
+    function draw() {
+      queued = false; ctx.clearRect(0, 0, W, H);
+      for (var y = GAP / 2; y < H; y += GAP) for (var x = GAP / 2; x < W; x += GAP) {
+        var dx = x - mx, dy = y - my, d = Math.sqrt(dx * dx + dy * dy), k = d < R ? 1 - d / R : 0;
+        ctx.globalAlpha = .13 + k * .8; ctx.fillStyle = k ? '#ff5b14' : '#f3efe8';
+        ctx.beginPath(); ctx.arc(x + (k ? dx / d * k * 10 : 0), y + (k ? dy / d * k * 10 : 0), 1 + k * 2, 0, 6.283); ctx.fill();
+      }
+    }
+    function ask() { if (!queued) { queued = true; requestAnimationFrame(draw); } }
+    function size() { var r = hero.getBoundingClientRect(); W = r.width; H = r.height; cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ask(); }
+    size(); addEventListener('resize', size);
+    if (fine && !reduce) {
+      hero.addEventListener('pointermove', function (e) { var r = hero.getBoundingClientRect(); mx = e.clientX - r.left; my = e.clientY - r.top; ask(); });
+      hero.addEventListener('pointerleave', function () { mx = my = -999; ask(); });
+    }
+  })();
+
+  /* Cursor ring + magnetic buttons (desktop only) */
+  if (fine && !reduce) {
+    var ring = document.createElement('div'); ring.className = 'cur'; document.body.appendChild(ring);
+    var cx = 0, cy = 0, rx = 0, ry = 0, moving = false, seen = false;
+    function follow() {
+      rx += (cx - rx) * .2; ry += (cy - ry) * .2; ring.style.transform = 'translate(' + rx + 'px,' + ry + 'px)';
+      if (Math.abs(cx - rx) + Math.abs(cy - ry) > .2) requestAnimationFrame(follow); else moving = false;
+    }
+    addEventListener('pointermove', function (e) {
+      cx = e.clientX; cy = e.clientY;
+      if (!seen) { seen = true; rx = cx; ry = cy; ring.classList.add('on'); }
+      ring.classList.toggle('big', !!(e.target.closest && e.target.closest('a,button,summary,input[type=range]')));
+      if (!moving) { moving = true; requestAnimationFrame(follow); }
+    }, { passive: true });
+    document.documentElement.addEventListener('mouseleave', function () { ring.classList.remove('on'); seen = false; });
+    document.querySelectorAll('.hero-actions .btn, .hdr-cta .btn').forEach(function (bt) {
+      bt.addEventListener('pointermove', function (e) { var r = bt.getBoundingClientRect(); bt.style.transform = 'translate(' + (e.clientX - r.left - r.width / 2) * .22 + 'px,' + (e.clientY - r.top - r.height / 2) * .32 + 'px)'; });
+      bt.addEventListener('pointerleave', function () { bt.style.transform = ''; });
+    });
+  }
+
+  /* Live code: types real code, preview builds as each line lands */
+  (function () {
+    var code = $('ideCode'); if (!code) return;
+    var L = [
+      { t: [['c', '// result-card.js — built live']] },
+      { t: [['k', 'const '], ['v', 'card'], ['p', ' = '], ['f', 'createCard'], ['p', '({']] },
+      { t: [['p', '  '], ['a', 'school'], ['p', ': '], ['s', '"The Model School"'], ['p', ',']], fx: 'school' },
+      { t: [['p', '  '], ['a', 'student'], ['p', ': '], ['s', '"Ayesha Khan"'], ['p', ',']], fx: 'student' },
+      { t: [['p', '  '], ['a', 'marks'], ['p', ': ['], ['n', '78'], ['p', ', '], ['n', '91'], ['p', ', '], ['n', '73'], ['p', '],']], fx: 'marks' },
+      { t: [['p', '  '], ['a', 'theme'], ['p', ': '], ['s', '"#ff5b14"'], ['p', ',']], fx: 'theme' },
+      { t: [['p', '});']] },
+      { t: [] },
+      { t: [['v', 'card'], ['p', '.'], ['f', 'grade'], ['p', '();'], ['c', '      // → "A+"']], fx: 'grade' },
+      { t: [['v', 'card'], ['p', '.'], ['f', 'exportPDF'], ['p', '();']], fx: 'pdf' }
+    ];
+    var card = $('pvCard'), rows = document.querySelectorAll('#pvRows .pv-row'), marks = [78, 91, 73], run = 0;
+    var fx = {
+      school: function () { $('pvSchool').classList.remove('sk'); $('pvLogo').classList.remove('sk'); },
+      student: function () { $('pvStudent').classList.remove('sk'); },
+      marks: function () { rows.forEach(function (r, i) { r.querySelector('i').style.width = marks[i] + '%'; r.querySelector('b').textContent = marks[i]; }); },
+      theme: function () { card.style.setProperty('--pv', '#ff5b14'); },
+      grade: function () { $('pvGrade').textContent = 'A+'; },
+      pdf: function () { $('pvPdf').classList.add('show'); }
+    };
+    function reset() {
+      code.innerHTML = ''; card.style.removeProperty('--pv');
+      ['pvSchool', 'pvLogo', 'pvStudent'].forEach(function (id) { $(id).classList.add('sk'); });
+      rows.forEach(function (r) { r.querySelector('i').style.width = 0; r.querySelector('b').textContent = '—'; });
+      $('pvGrade').textContent = '—'; $('pvPdf').classList.remove('show');
+    }
+    function line(n) { var d = document.createElement('div'); d.className = 'ln'; d.innerHTML = '<span class="no">' + (n + 1) + '</span><span class="tx"></span>'; code.appendChild(d); return d; }
+    function play(instant) {
+      var me = ++run; reset();
+      var caret = document.createElement('span'); caret.className = 'caret2';
+      var li = 0, ti = 0, ci = 0, el = line(0), tx = el.querySelector('.tx'), span = null, col = 0;
+      el.classList.add('act'); tx.appendChild(caret);
+      function step() {
+        if (me !== run) return;
+        var ln = L[li], tok = ln.t[ti];
+        if (!tok) {                                   // line finished
+          if (ln.fx) fx[ln.fx]();
+          if (++li >= L.length) { $('ideLn').textContent = 'Ln ' + L.length + ', Col ' + (col + 1); return; }
+          el.classList.remove('act'); el = line(li); el.classList.add('act'); tx = el.querySelector('.tx'); tx.appendChild(caret); ti = 0; ci = 0; col = 0; span = null;
+          return instant ? step() : setTimeout(step, ln.fx ? 420 : 140);
+        }
+        if (ci === 0) { span = document.createElement('span'); span.className = 'tk-' + tok[0]; tx.insertBefore(span, caret); }
+        if (instant) { span.textContent = tok[1]; ci = tok[1].length; } else span.textContent += tok[1][ci++];
+        col++; $('ideLn').textContent = 'Ln ' + (li + 1) + ', Col ' + (col + 1);
+        if (ci >= tok[1].length) { ti++; ci = 0; }
+        return instant ? step() : setTimeout(step, 26 + Math.random() * 30);
+      }
+      step();
+    }
+    $('ideReplay').addEventListener('click', function () { play(false); });
+    if (reduce || !('IntersectionObserver' in window)) return play(true);
+    var seenIde = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { seenIde.disconnect(); play(false); } }, { threshold: .35 });
+    seenIde.observe(code);
+  })();
+
+  /* Terminal */
+  (function () {
+    var out = $('termOut'), tform = $('termForm'), tin = $('termInput'); if (!out) return;
+    var hist = [], hi = 0, P = '<span class="tp">sabir@bitali:~$</span> ';
+    function esc(s) { return s.replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+    function print(html) { var d = document.createElement('div'); d.className = 'tline'; d.innerHTML = html; out.appendChild(d); out.scrollTop = out.scrollHeight; }
+    function link(u, t) { return '<a href="' + u + '" target="_blank" rel="noopener">' + t + '</a>'; }
+    function jump(id) { var el = $(id); if (el) setTimeout(function () { el.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth' }); }, 500); }
+    var secs = { work: 'work', products: 'products', services: 'services', demo: 'demo', craft: 'craft', about: 'about', academy: 'academy', contact: 'contact' };
+    var C = {
+      help: function () { return '<span class="th">Available commands</span>\n  whoami      who is behind this site\n  skills      what we build with\n  projects    client work, live links\n  products    our own software\n  contact     phone, WhatsApp, email\n  ls          list sections\n  cd &lt;name&gt;   jump to a section\n  demo        open the live result-card demo\n  sudo hire sabir   start a project\n  clear       clear the screen'; },
+      whoami: function () { return '<span class="tw">Sabir Ali s/o Hakim Ali</span>\nFounder &amp; lead developer, Bitali Aaly — Lahore, Pakistan.\nBuilder. Educator. Developer.\n<span class="td">800+ students on our platforms · 3 software products live</span>'; },
+      skills: function () { return '<span class="th">frontend</span>   HTML, CSS, JavaScript, React\n<span class="th">backend</span>    Node.js, Express, REST APIs, auth\n<span class="th">data</span>       MongoDB, Excel/PDF pipelines\n<span class="th">desktop</span>    Windows apps, installers, auto-update\n<span class="th">mobile</span>     Android apps\n<span class="th">automation</span> Python, ffmpeg, data-entry bots\n<span class="th">cloud</span>      Cloudflare Workers, Render, Cloudinary'; },
+      projects: function () { return '1. ' + link('https://ms-academy.onrender.com', 'MS Academy') + '   EdTech platform · 800+ students\n2. ' + link('https://nineth-physics-solution-book.onrender.com', 'Al-Muslim Science Academy') + '   physics platform\n3. The Westbridge Schools   website + animated lessons'; },
+      products: function () { return '1. ' + link('https://bitaliaaly-results.bitaliaaly.workers.dev/#/school', 'Result &amp; Timetable') + '   web · android · windows\n2. ' + link('https://bitaliaaly-progress.bitaliaaly.workers.dev/', 'Progress Tracker') + '   web · android · windows\n3. ' + link('https://license-server.bitaliaaly.workers.dev/download', 'Data Entry Solution') + '   windows desktop'; },
+      contact: function () { return 'whatsapp  ' + link('https://wa.me/923414717517', '0341-4717517') + '\nemail     <a href="mailto:ms.production.house.pk@gmail.com">ms.production.house.pk@gmail.com</a>\ngithub    ' + link('https://github.com/sabirsikandar4599', 'sabirsikandar4599') + '\n<span class="td">or run:</span> sudo hire sabir'; },
+      ls: function () { return Object.keys(secs).join('   '); },
+      demo: function () { jump('demo'); return 'Opening live demo…'; },
+      date: function () { return new Date().toString(); },
+      pwd: function () { return '/home/sabir/bitali-aaly'; },
+      'sudo hire sabir': function () { jump('contact'); return '<span class="tp">✔ Permission granted.</span> Opening the contact form…'; }
+    };
+    C.about = C.whoami; C.hire = C['sudo hire sabir']; C.stack = C.skills; C.work = C.projects;
+    function exec(raw) {
+      var cmd = raw.trim(); print(P + esc(cmd)); if (!cmd) return;
+      hist.push(cmd); hi = hist.length;
+      var key = cmd.toLowerCase().replace(/\s+/g, ' ');
+      if (key === 'clear' || key === 'cls') { out.innerHTML = ''; return; }
+      if (key.indexOf('cd ') === 0) { var s = key.slice(3).replace(/[#\/~]/g, ''); if (secs[s]) { jump(secs[s]); return print('→ ' + s); } return print('cd: no such section: ' + esc(s) + ' <span class="td">(try: ls)</span>'); }
+      if (C[key]) return print(C[key]());
+      if (key.indexOf('sudo') === 0) return print('Nice try 🙂  The only sudo command here is: <span class="tw">sudo hire sabir</span>');
+      print('command not found: ' + esc(cmd) + ' <span class="td">— type</span> help');
+    }
+    tform.addEventListener('submit', function (e) { e.preventDefault(); exec(tin.value); tin.value = ''; });
+    tin.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowUp' && hist.length) { e.preventDefault(); hi = Math.max(0, hi - 1); tin.value = hist[hi]; }
+      else if (e.key === 'ArrowDown' && hist.length) { e.preventDefault(); hi = Math.min(hist.length, hi + 1); tin.value = hist[hi] || ''; }
+      else if (e.key === 'l' && e.ctrlKey) { e.preventDefault(); out.innerHTML = ''; }
+    });
+    $('term').addEventListener('click', function (e) { if (!e.target.closest('a') && !String(getSelection())) tin.focus({ preventScroll: true }); });
+    document.querySelectorAll('#termChips .chip').forEach(function (c) { c.addEventListener('click', function () { exec(c.dataset.cmd); }); });
+    print('<span class="td">Bitali Aaly shell — type</span> help <span class="td">to begin.</span>');
+    exec('whoami'); hist = []; hi = 0;
+  })();
 
   $('yr').textContent = new Date().getFullYear();
 })();
